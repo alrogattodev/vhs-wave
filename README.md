@@ -112,7 +112,24 @@ Ideal para locadoras ou empresas que desejam modernizar e automatizar sua gestã
     ```bash
     php artisan queue:work
     ```
-9. 
+9. Testar o Agendamento de incremento de preço:
+    ```bash
+    php artisan media:increase-price
+    ```
+    Se tudo estiver funcionando, você verá a mensagem:
+    ```bash
+    Prices increased by 1 cent for all media.
+    ```
+10. Para adicionar o agendamento no sistema (no Linux): 
+    1. Abra o editor de cron
+    ```bash
+    crontab -e
+    ```
+    2. Adicione a seguinte linha:
+    ```bash
+    * * * * * cd /raiz_do_projeto/ && php artisan schedule:run >> /dev/null 2>&1
+    ```
+
 
 ---
 
