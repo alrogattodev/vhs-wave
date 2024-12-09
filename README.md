@@ -1,66 +1,162 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistema de Locadora VHS Wave - API RESTful
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+O **Sistema de Locadora** é uma API RESTful desenvolvida em Laravel para gerenciar clientes, mídias (como filmes, séries ou jogos) e suas respectivas locações. O sistema é projetado para ser simples, eficiente e escalável, permitindo integração com outras aplicações por meio de respostas estruturadas em JSON.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 **Descrição do Projeto**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+O sistema permite:
+- Gerenciar clientes e mídias por meio de operações CRUD.
+- Registrar locações e devoluções de mídias.
+- Incrementar automaticamente os preços das mídias a cada 3 minutos usando cron jobs.
+- Processar locações de forma assíncrona utilizando filas (Redis ou MySQL).
+- Integrar com sistemas externos via webhooks.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Ideal para locadoras ou empresas que desejam modernizar e automatizar sua gestão de locações.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Detalhes
+- Para melhorar a organização, leitura do código, manutenção e melhor separação das responsabilidades utilizei Requests e Resources 
+- Os textos, mensagens, variáveis e validações foram escritos em inglês para: 1- facilitação de manutenção por times de outsourcing | 2- facilitar o uso de convenções do Laravel para criação de models, controllers, routes, etc.
+- Apesar do desempenho do REDIS ser melhor, utilizei o MySQL para gerenciar as filas por ser mais rápido para configurar em ambiente "caseiro" e ainda assim pode ser adequado para sistemas de baixa escala.
+- Foi criado um webhook que pode ser consumido para obter respostas sobre o sucesso ou falha do job de fila.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Backlog (o que pensei em implementar mas não deu tempo)
+- Sistema de autenticação e Autorização utilizando Sanctum
+- Front-end simples utilizando Bootstrap para propósito de testes
+- Maior gama de mensagens de erro e validações, facilitando a identificação de problemas e como consequência sua resolução
+- Tipo de mídia no model Medias para expansão da "empresa" permitindo catalogar outros tipos de mídia como games, VHS, cassetes, Blu Rays, etc.
+- Configurar Retries e Falhas para os jobs
+---
 
-## Laravel Sponsors
+## 🛠️ **Tecnologias Utilizadas**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **Laravel 11**
+- **MySQL** (banco de dados)
+- **Redis** (para filas)
+- **Postman / Insomnia** (para testes de API)
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## 📋 **Requisitos**
 
-## Contributing
+- PHP >= 8.1
+- Composer
+- MySQL
+- Redis (opcional, para filas)
+- Extensões PHP:
+  - `pdo`
+  - `mbstring`
+  - `openssl`
+  - `redis` (se usado)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 🗂️ **Instalação**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-repositorio/rental-system.git
+   ```
 
-## Security Vulnerabilities
+2. Entre no diretório do projeto:
+   ```bash
+   cd rental-system
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. Instale as dependências:
+   ```bash
+   composer install
+   ```
 
-## License
+4. Configure o arquivo `.env`:
+   - Configure as credenciais do banco de dados:
+     ```env
+     DB_CONNECTION=mysql
+     DB_HOST=127.0.0.1
+     DB_PORT=3306
+     DB_DATABASE=meudatabase
+     DB_USERNAME=root
+     DB_PASSWORD=sua_senha
+     ```
+   - Configure o repositório ("banco de dados" das filas) (se necessário):
+     ```env
+     QUEUE_CONNECTION=redis #(para Redis)
+     OU
+     QUEUE_CONNECTION=database #(para MySQL, no caso utilizei MySQL por isso existe a migration da tabela jobs)
+     ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. Gere a chave da aplicação:
+   ```bash
+   php artisan key:generate
+   ```
+
+6. Rode as migrações:
+   ```bash
+   php artisan migrate
+   ```
+
+7. Inicie o servidor de desenvolvimento:
+   ```bash
+   php artisan serve 
+   ```
+   Ou outro de sua preferência (para o desenvolvimento e fins de informação para compatibilidade, utilizei XAMPP 3.3.0, Apache 2.4.58 e MariaDB 10.4.32)
+
+8. Para processar os Jobs da fila: 
+    ```bash
+    php artisan queue:work
+    ```
+9. 
+
+---
+
+## 🛠️ **Funcionalidades Principais**
+
+### **Gerenciar Clientes**
+- **Listar Clientes:** `GET /clients`
+- **Criar Cliente:** `POST /clients`
+- **Atualizar Cliente:** `PUT /clients/{id}`
+- **Deletar Cliente:** `DELETE /clients/{id}`
+
+### **Gerenciar Mídias**
+- **Listar Mídias:** `GET /medias`
+- **Criar Mídia:** `POST /medias`
+- **Atualizar Mídia:** `PUT /medias/{id}`
+- **Deletar Mídia:** `DELETE /medias/{id}`
+
+### **Gerenciar Locações**
+- **Registrar Locações:** `POST /rentals/rent`
+- **Registrar Devoluções:** `POST /rentals/{id}/return`
+
+### **Tarefas Automáticas**
+- **Incrementar Preços:** Cron job que aumenta o preço das mídias em 1 centavo a cada 3 minutos.
+
+---
+
+## 🔧 **Testando a API**
+
+### Usando Postman ou Insomnia:
+1. Configure a URL base:
+   ```plaintext
+   http://localhost:8000/api/ (supondo que esteja utilizando seu computador e o webserver Apache/nGinx na porta 8000, caso contrário basta alterar)
+   ```
+
+2. Adicione as rotas disponíveis:
+   - **Clientes:** `/clients`
+   - **Mídias:** `/medias`
+   - **Locações:** `/rentals`
+
+3. Envie requisições usando os métodos adequados (`GET`, `POST`, `PUT`, `DELETE`).
+
+---
+
+## 📞 **Contato**
+
+- Desenvolvedor: Alberto Rogatto
+- Email: [alrogattodev@gmail.com]
+- GitHub: [https://github.com/alrogattodev](https://github.com/alrogattodev)
+
