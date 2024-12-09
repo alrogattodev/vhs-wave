@@ -31,6 +31,8 @@ Ideal para locadoras ou empresas que desejam modernizar e automatizar sua gestã
 - Maior gama de mensagens de erro e validações, facilitando a identificação de problemas e como consequência sua resolução
 - Tipo de mídia no model Medias para expansão da "empresa" permitindo catalogar outros tipos de mídia como games, VHS, cassetes, Blu Rays, etc.
 - Configurar Retries e Falhas para os jobs
+- Dockerizar o sistema
+- Pipeline para deploy
 ---
 
 ## 🛠️ **Tecnologias Utilizadas**
