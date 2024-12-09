@@ -62,7 +62,7 @@ Ideal para locadoras ou empresas que desejam modernizar e automatizar sua gestã
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-repositorio/rental-system.git
+   git clone https://github.com/alrogattodev/vhs-wave.git
    ```
 
 2. Entre no diretório do projeto:
